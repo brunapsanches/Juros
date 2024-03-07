@@ -19,10 +19,10 @@
         app:layout_constraintVertical_bias="0.108" />
 
     <Button
-        android:id="@+id/btnSimples"
+        android:id="@+id/simples"
         android:layout_width="134dp"
         android:layout_height="46dp"
-        android:onClick="btnSimples"
+        android:onClick="simples"
         android:text="simples"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +32,10 @@
         app:layout_constraintVertical_bias="0.921" />
 
     <Button
-        android:id="@+id/btnComposto"
+        android:id="@+id/composto"
         android:layout_width="126dp"
         android:layout_height="46dp"
-        android:onClick="btnComposto"
+        android:onClick="composto"
         android:text="Composto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.921" />
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/radiomes"
         android:layout_width="100dp"
         android:layout_height="38dp"
         android:text="a.m"
@@ -57,7 +57,7 @@
         app:layout_constraintVertical_bias="0.789" />
 
     <RadioButton
-        android:id="@+id/taxaAA"
+        android:id="@+id/radioano"
         android:layout_width="94dp"
         android:layout_height="40dp"
         android:text="a.a"
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="0.218" />
 
     <EditText
-        android:id="@+id/edtValorFi"
+        android:id="@+id/valorfinan"
         android:layout_width="321dp"
         android:layout_height="47dp"
         android:ems="10"
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.37" />
 
     <EditText
-        android:id="@+id/edtTaxa"
+        android:id="@+id/taxa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -147,7 +147,7 @@
         app:layout_constraintVertical_bias="0.531" />
 
     <EditText
-        android:id="@+id/edtTotal"
+        android:id="@+id/tempo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -158,5 +158,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.602" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

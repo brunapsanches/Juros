@@ -10,14 +10,17 @@ class resuldado : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resuldado)
         setSupportActionBar(findViewById(R.id.toolbar))
-        val montante = findViewById<TextView>(R.id.lblMont)
-        val valor = findViewById<TextView>(R.id.lblTotal)
-        val parcela = findViewById<TextView>(R.id.lblParcela)
-        val valormont = intent.getDoubleExtra("calcmont", 0.0)
-        val valortotal = intent?.getDoubleExtra("calcvalor", 0.0)
-        val valorparcela = intent?.getDoubleExtra("calcparcela", 0.0)
-        montante.text = valormont.toString()
-        valor.text = valortotal.toString()
-        parcela.text = valorparcela.toString()
+        val montante = intent.getDoubleExtra("montante",0.0)
+        val juros = intent.getDoubleExtra("juros",0.0)
+        val parcela = intent.getDoubleExtra("parcela",0.0)
+        val mudarmontante = findViewById<TextView>(R.id.montante)
+        val mudarjuros = findViewById<TextView>(R.id.juros)
+        val mudarparcela = findViewById<TextView>(R.id.parcela)
+        mudarmontante.setText(montante.toString())
+        mudarjuros.setText(juros.toString())
+        mudarparcela.setText(parcela.toString())
+
     }
+
+
 }

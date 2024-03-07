@@ -7,7 +7,7 @@
     tools:context=".resuldado">
 
     <EditText
-        android:id="@+id/lblParcela"
+        android:id="@+id/parcela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="529dp" />
 
     <EditText
-        android:id="@+id/lblTotal"
+        android:id="@+id/juros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -76,7 +76,7 @@
         app:layout_constraintVertical_bias="0.664" />
 
     <EditText
-        android:id="@+id/lblMont"
+        android:id="@+id/montante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

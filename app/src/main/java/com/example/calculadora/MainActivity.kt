@@ -6,75 +6,94 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.Toast
 import kotlin.math.pow
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(findViewById(R.id.toolbar2))
         setContentView(R.layout.activity_main)
     }
 
-    fun btnSimples(view: View) {
-        val aa = findViewById<RadioButton>(R.id.taxaAA)
-        val edtfinanciamento = findViewById<EditText>(R.id.edtValorFi)
-        val edttaxa = findViewById<EditText>(R.id.edtTaxa)
-        val edttempo = findViewById<EditText>(R.id.edtTotal)
-        val financiamento = edtfinanciamento?.text.toString().toDouble()
-        var taxa = edttaxa?.text.toString().toDouble()
-        val tempo = edttempo?.text.toString().toDouble()
-        var calcmont = 0.0
-        var calcvalor = 0.0
-        var calcparcela = 0.0
-        if (aa.isSelected) {
-            taxa=taxa / 12.0/100.0
+    fun simples(view: View) {
+        val Botaoano = findViewById<RadioButton>(R.id.radioano)
+        val Botaomes = findViewById<RadioButton>(R.id.radiomes)
+        val valor = findViewById<EditText>(R.id.valorfinan)
+        val taxa = findViewById<EditText>(R.id.taxa)
+        val tempo = findViewById<EditText>(R.id.tempo)
+        var nvalor = valor?.text.toString().toDouble()
+        var ntaxa = taxa?.text.toString().toDouble()
+        var ntempo = tempo?.text.toString().toDouble()
+        if (Botaoano.isChecked) {
+            var taxadeci = ntaxa/100.0
+            var taxaAA= taxadeci/12
+            var montante = nvalor + (nvalor * taxaAA * ntempo)
+            var totaljuros = montante - nvalor
+            var valorparcela = montante/ntempo
+            Toast.makeText(this, "$montante", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, resuldado::class.java).apply {
+                putExtra("montante", montante)
+                putExtra("juros", totaljuros)
+                putExtra("parcela", valorparcela)
 
-            calcmont = financiamento + (financiamento * taxa * tempo)
-            calcvalor = calcmont - financiamento
-            calcparcela = calcmont / tempo
-        } else {
-            taxa=taxa/100.0
-            calcmont = financiamento + (financiamento * taxa * tempo)
-            calcvalor = calcmont - financiamento
-            calcparcela = calcmont / tempo
+            }
+            startActivity(intent)
+        }
+        if (Botaomes.isChecked){
+            var taxaAA= ntaxa/100
+            var montante = nvalor + (nvalor * taxaAA * ntempo)
+            var totaljuros = montante - nvalor
+            var valorparcela = montante/ntempo
+
+            val intent = Intent(this, resuldado::class.java).apply {
+                putExtra("montante", montante)
+                putExtra("juros", totaljuros)
+                putExtra("parcela", valorparcela)
+
+            }
+            startActivity(intent)
         }
 
-        val intent = Intent(this, resuldado::class.java).apply {
-            putExtra("calcmont", calcmont)
-            putExtra("calcvalor", calcvalor)
-            putExtra("calcparcela", calcparcela)
-        }
-        startActivity(intent)
-    }
-    fun btnComposto(view: View) {
-        val aa = findViewById<RadioButton>(R.id.taxaAA)
-        val editfinanciamento = findViewById<EditText>(R.id.edtValorFi)
-        val edittaxa = findViewById<EditText>(R.id.edtTaxa)
-        val edittempo = findViewById<EditText>(R.id.edtTotal)
-        val financiamento = editfinanciamento?.text.toString().toDouble()
-        val taxa = edittaxa?.text.toString().toDouble()
-        val tempo = edittempo?.text.toString().toDouble()
-        var calcmont = 0.0
-        var calcvalor = 0.0
-        var calcparcela = 0.0
-        if (aa.isSelected){
-            val taxaAA = Math.pow(1+taxa,(1 / 12.0))-1
-            calcmont = financiamento * (1.0+taxaAA).pow(tempo)
-            calcvalor = calcmont - financiamento
-            calcparcela = calcmont / tempo
-        }
-        else {
-            calcmont = financiamento * (1.0+taxa).pow(tempo)
-            calcvalor = calcmont - financiamento
-            calcparcela = calcmont / tempo
-        }
-        val intent = Intent(this, resuldado::class.java).apply {
-            putExtra("calcmont", calcmont)
-            putExtra("calcvalor", calcvalor)
-            putExtra("calcparcela", calcparcela)
-        }
-        startActivity(intent)
     }
 
+    fun composto(view: View) {
+        val Botaoano = findViewById<RadioButton>(R.id.radioano)
+        val Botaomes = findViewById<RadioButton>(R.id.radiomes)
+        val valor = findViewById<EditText>(R.id.valorfinan)
+        val taxa = findViewById<EditText>(R.id.taxa)
+        val tempo = findViewById<EditText>(R.id.tempo)
+        var nvalor = valor?.text.toString().toDouble()
+        var ntaxa = taxa?.text.toString().toDouble()
+        var ntempo = tempo?.text.toString().toDouble()
+        if (Botaoano.isChecked) {
+            var taxadeci = ntaxa/100.0
+            var taxaAA= Math.pow(1+taxadeci,(1 /12.0))-1
+            var montante = nvalor * (1.0 + taxaAA).pow(ntempo)
+            var totaljuros = montante - nvalor
+            var valorparcela = montante/ntempo
+            Toast.makeText(this, "$montante", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, resuldado::class.java).apply {
+                putExtra("montante", montante)
+                putExtra("juros", totaljuros)
+                putExtra("parcela", valorparcela)
+
+            }
+            startActivity(intent)
+        }
+        if (Botaomes.isChecked){
+            var montante = nvalor * (1.0+ntaxa).pow(ntempo)
+            var totaljuros = montante - nvalor
+            var valorparcela = montante/ntempo
+            Toast.makeText(this, "$montante", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, resuldado::class.java).apply {
+                putExtra("montante", montante)
+                putExtra("juros", totaljuros)
+                putExtra("parcela", valorparcela)
+
+            }
+            startActivity(intent)
+        }
+    }
 }
